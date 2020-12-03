@@ -9,13 +9,15 @@ public class GameContainer implements Runnable{
     private boolean running=false;
     private Window window;
     private Renderer renderer;
+    private AbstractGame game;
     private Input input;
     private final double UPDATE_CAPE = 1.0/60.0;
     private int widht =320, height=240;
     private float scale =3f;
     private String title = "BulletHell";
 
-    public GameContainer(){
+    public GameContainer(AbstractGame game){
+        this.game=game;
     }
 
     public void start(){
@@ -55,8 +57,8 @@ public class GameContainer implements Runnable{
                 unprocessedTime-=UPDATE_CAPE;
                 render=true;
 
-                //TODO: Update Game
-                
+                game.update(this,(float)UPDATE_CAPE);
+
                 input.update();
 
                 if(frameTime>=1.0){
@@ -67,8 +69,8 @@ public class GameContainer implements Runnable{
                 }
             }
             if(render){
-                // TODO: Render Game
                 renderer.clear();
+                game.render(this,renderer);
                 window.update();
                 frames++;
             }else{
@@ -120,5 +122,9 @@ public class GameContainer implements Runnable{
 
     public Window getWindow() {
         return window;
+    }
+
+    public Input getInput() {
+        return input;
     }
 }
