@@ -1,11 +1,15 @@
 package Engine;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 public class GameContainer implements Runnable{
 
     private Thread thread;
     private boolean running=false;
     private Window window;
     private Renderer renderer;
+    private Input input;
     private final double UPDATE_CAPE = 1.0/60.0;
     private int widht =320, height=240;
     private float scale =3f;
@@ -17,6 +21,8 @@ public class GameContainer implements Runnable{
     public void start(){
         window= new Window(this);
         renderer = new Renderer(this);
+        input = new Input(this);
+
         thread = new Thread(this);
         thread.run();
     }
@@ -50,6 +56,9 @@ public class GameContainer implements Runnable{
                 render=true;
 
                 //TODO: Update Game
+                
+                input.update();
+
                 if(frameTime>=1.0){
                     frameTime=0;
                     fps=frames;
