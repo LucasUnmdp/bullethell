@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/BulletHell_jar</output-path>
     <root id="archive" name="BulletHell.jar">
       <element id="module-output" name="BulletHell" />
+      <element id="library" level="project" name="res" />
     </root>
   </artifact>
 </component>

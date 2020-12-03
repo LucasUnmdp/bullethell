@@ -11,7 +11,7 @@ public class GameContainer implements Runnable{
     private Renderer renderer;
     private AbstractGame game;
     private Input input;
-    private final double UPDATE_CAPE = 1.0/60.0;
+    private final double UPDATE_CAPE = 1.0/144.0;
     private int widht =320, height=240;
     private float scale =3f;
     private String title = "BulletHell";
