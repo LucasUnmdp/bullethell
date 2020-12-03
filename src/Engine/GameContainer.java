@@ -5,6 +5,7 @@ public class GameContainer implements Runnable{
     private Thread thread;
     private boolean running=false;
     private Window window;
+    private Renderer renderer;
     private final double UPDATE_CAPE = 1.0/60.0;
     private int widht =320, height=240;
     private float scale =3f;
@@ -15,6 +16,7 @@ public class GameContainer implements Runnable{
 
     public void start(){
         window= new Window(this);
+        renderer = new Renderer(this);
         thread = new Thread(this);
         thread.run();
     }
@@ -57,6 +59,7 @@ public class GameContainer implements Runnable{
             }
             if(render){
                 // TODO: Render Game
+                renderer.clear();
                 window.update();
                 frames++;
             }else{
@@ -104,5 +107,9 @@ public class GameContainer implements Runnable{
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Window getWindow() {
+        return window;
     }
 }
