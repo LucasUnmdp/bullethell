@@ -1,6 +1,7 @@
 package Engine;
 
 
+import Engine.gfx.Font;
 import Engine.gfx.Image;
 import Engine.gfx.ImageTile;
 
@@ -10,6 +11,8 @@ public class Renderer {
 
     private int pW,pH;
     private int[] p;
+
+    private Font font= Font.STANDAR;
 
     public Renderer(GameContainer gc){
         pW=gc.getWidht();
@@ -29,6 +32,23 @@ public class Renderer {
         }
 
         p[x+y*pW]=value;
+    }
+
+    public void drawText(String text, int offX, int offY,int color){
+        text = text.toUpperCase();
+        int offset=0;
+
+        for(int i=0;i<text.length();i++){
+            int unicode= text.codePointAt(i)-32;
+            for(int y=0;y<font.getFontImage().getH();y++){
+                for(int x=0;x<font.getWidths()[unicode];x++){
+                    if(font.getFontImage().getP()[(x+font.getOffsets()[unicode])+y*font.getFontImage().getW()]==0xffffffff){
+                        setPixel(x+offset+offX,y+offY,color);
+                    }
+                }
+            }
+            offset+=font.getWidths()[unicode];
+        }
     }
     public void drawImage(Image image, int offX, int offY){
         if(offX<-image.getW() || offY<-image.getH())
