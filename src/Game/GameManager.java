@@ -30,6 +30,7 @@ public class GameManager extends AbstractGame {
 
     @Override
     public void render(GameContainer gc, Renderer r) {
+        r.fillRect(100,100,32,32,0xffffccff);
         r.drawImageTile(tile,0,0,(int)Math.abs(temp),0);
         r.drawImage(image,gc.getInput().getMouseX()-image.getW()/2,gc.getInput().getMouseY()-image.getH()/2);
     }
