@@ -7,6 +7,8 @@ import Engine.gfx.Image;
 import Engine.gfx.ImageTile;
 import Engine.sfx.SoundClip;
 
+import java.awt.event.KeyEvent;
+
 
 public class GameManager extends AbstractGame {
 
@@ -17,9 +19,13 @@ public class GameManager extends AbstractGame {
     public GameManager(){
         image = new Image("/test.png");
         tile = new ImageTile("/tiletest.png",16,16);
+        clip = new SoundClip("/audio/ungingan.wav");
+        clip.setVolume(-10);
     }
     @Override
     public void update(GameContainer gc, float dt) {
+        if(gc.getInput().isKeyDown(KeyEvent.VK_SPACE))
+            clip.play();
         temp+=dt*10;
         if(temp>3){
             temp=-4;
