@@ -70,6 +70,7 @@ public class GameContainer implements Runnable{
             if(render){
                 renderer.clear();
                 game.render(this,renderer);
+                renderer.process();
                 renderer.drawText("FPS:"+fps,widht-24,0,0xffffff00);
                 window.update();
                 frames++;
