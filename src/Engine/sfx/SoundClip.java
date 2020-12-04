@@ -1,7 +1,4 @@
 package Engine.sfx;
-
-import netscape.security.UserTarget;
-
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;

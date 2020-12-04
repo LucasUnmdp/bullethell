@@ -12,8 +12,8 @@ public class GameContainer implements Runnable{
     private AbstractGame game;
     private Input input;
     private final double UPDATE_CAPE = 1.0/60.0;
-    private int widht =320, height=240;
-    private float scale =3f;
+    private int widht =480, height=360;
+    private float scale =2f;
     private String title = "GameEngine";
 
     public GameContainer(AbstractGame game){
@@ -71,7 +71,7 @@ public class GameContainer implements Runnable{
                 renderer.clear();
                 game.render(this,renderer);
                 renderer.process();
-                renderer.drawText("FPS:"+fps,widht-24,0,0xffffff00);
+                renderer.drawText("FPS:"+fps,widht-45,0,0xffffff00);
                 window.update();
                 frames++;
             }else{
