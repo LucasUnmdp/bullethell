@@ -125,6 +125,15 @@ public class Renderer {
             offset+=font.getWidths()[unicode];
         }
     }
+
+    public void setLightBlock(int x, int y, int value){
+        if(x<0||x>=pW||y<0||y>=pH)
+            return;
+        if(zb[x+y*pW]>zDepth){
+            return;
+        }
+        lb[x+y*pW]=value;
+    }
     public void drawImage(Image image, int offX, int offY){
 
         if(image.isAlpha() && !processing){
@@ -153,6 +162,7 @@ public class Renderer {
         for(int y= newY;y<newHeight;y++){
             for(int x= newX;x<newWidth;x++){
                 setPixel(x+offX,y+offY,image.getP()[x+y*image.getW()]);
+                setLightBlock(x+offX,y+offY,image.getLightBlock());
             }
         }
     }
@@ -184,6 +194,7 @@ public class Renderer {
         for(int y= newY;y<newHeight;y++){
             for(int x= newX;x<newWidth;x++){
                 setPixel(x+offX,y+offY,image.getP()[(x+tileX*image.getTileW())+(y +tileY*image.getTileH())*image.getW()]);
+                setLightBlock(x+offX,y+offY,image.getLightBlock());
             }
         }
     }
@@ -249,9 +260,17 @@ public class Renderer {
             int screenX=x0-l.getRadius()+offX;
             int screenY=y0 -l.getRadius() +offY;
 
+            if(screenX<0 || screenX >= pW || screenY<0 || screenY >=pH){
+                return;
+            }
+
             int lightColor = l.getLightValue(x0,y0);
             if(lightColor == 0)
                 return;
+
+            if(lb[screenX+screenY*pW] == Light.FULL)
+                return;
+
             setLightMap(screenX,screenY,lightColor);
             if(x0==x1 && y0==y1)
                 break;
