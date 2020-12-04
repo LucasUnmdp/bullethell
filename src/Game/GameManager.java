@@ -5,13 +5,14 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
 import Engine.gfx.ImageTile;
+import Engine.sfx.SoundClip;
 
 
 public class GameManager extends AbstractGame {
 
     private Image image;
     private ImageTile tile;
-
+    private SoundClip clip;
 
     public GameManager(){
         image = new Image("/test.png");
