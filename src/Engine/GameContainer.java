@@ -45,7 +45,7 @@ public class GameContainer implements Runnable{
         double frameTime=0;
         int frames=0;
         int fps=0;
-
+        game.init(this);
         while(running){
             render=false;
             firstTime= System.nanoTime()/1000000000.0;
@@ -127,5 +127,9 @@ public class GameContainer implements Runnable{
 
     public Input getInput() {
         return input;
+    }
+
+    public Renderer getRenderer() {
+        return renderer;
     }
 }

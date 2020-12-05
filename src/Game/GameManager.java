@@ -8,47 +8,44 @@ import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
 import Engine.sfx.SoundClip;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 public class GameManager extends AbstractGame {
 
-    private Image image;
-    private Image background;
-    private Image shadowtest;
-    private SoundClip clip;
-    private Light light;
+    private ArrayList<GameObject> objects = new ArrayList<GameObject>();
 
     public GameManager(){
-        image = new Image("/test.png");
-        light = new Light(200,0xffffffff);
-        background= new Image("/background.png");
-        clip = new SoundClip("/audio/ungingan.wav");
-        shadowtest = new Image("/shadowtest.png");
-        shadowtest.setLightBlock(Light.FULL);
-        clip.setVolume(-10);
+        objects.add(new Player(1,1));
     }
+
+    @Override
+    public void init(GameContainer gc) {
+        gc.getRenderer().setAmbientColor(-1);
+    }
+
     @Override
     public void update(GameContainer gc, float dt) {
-        if(gc.getInput().isButtonDown(MouseEvent.BUTTON1))
-            clip.play();
-        temp+=dt*10;
-        if(temp>3){
-            temp=-4;
+        for(int i=0; i<objects.size();i++){
+            objects.get(i).update(gc,dt);
+            if(objects.get(i).isDead()){
+                objects.remove(i--);
+            }
         }
     }
 
-    float temp=0;
-
     @Override
     public void render(GameContainer gc, Renderer r) {
-        r.drawImage(background,0,0);
-        r.drawImage(image,gc.getInput().getMouseX()-image.getW()/2,gc.getInput().getMouseY()-image.getH()/2);
-        r.drawImage(shadowtest,gc.getWidht()/2-shadowtest.getW()/2,gc.getHeight()/2-shadowtest.getH()/2);
-        r.drawLight(light,gc.getInput().getMouseX(),gc.getInput().getMouseY());
+        for(GameObject obj: objects){
+            obj.render(gc,r);
+        }
     }
 
     public static void main(String args[]){
         GameContainer gc= new GameContainer(new GameManager());
+        gc.setWidht(320);
+        gc.setHeight(240);
+        gc.setScale(3f);
         gc.start();
     }
 }
