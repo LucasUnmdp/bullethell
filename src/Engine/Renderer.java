@@ -19,6 +19,7 @@ public class Renderer {
     private int ambientColor = 0xff232323;
     private int zDepth = 0;
     private ArrayList<ImageRequest> imageRequest = new ArrayList<ImageRequest>();
+    private ArrayList<LightRequest> lightRequest = new ArrayList<>();
     private boolean processing=false;
 
     private Font font= Font.STANDAR;
@@ -61,6 +62,11 @@ public class Renderer {
             drawImage(ir.image,ir.offX,ir.offY);
         }
 
+        for(int i=0;i<lightRequest.size();i++){
+            LightRequest l = lightRequest.get(i);
+            drawLightRequest(l.light,l.locX,l.locY);
+        }
+
         for(int i=0;i<p.length;i++){
             float r=((lm[i] >> 16) & 0xff) / 255f;
             float g=((lm[i] >> 8) & 0xff) / 255f;
@@ -70,6 +76,7 @@ public class Renderer {
         }
 
         imageRequest.clear();
+        lightRequest.clear();
         processing=false;
     }
 
@@ -238,6 +245,11 @@ public class Renderer {
     }
 
     public void drawLight(Light l, int offX, int offY){
+        lightRequest.add(new LightRequest(l,offX,offY));
+    }
+
+
+    private void drawLightRequest(Light l, int offX, int offY){
         for(int i=0;i<=l.getDiameter();i++){
             drawLightLine(l,l.getRadius(),l.getRadius(),i,0,offX,offY);
             drawLightLine(l,l.getRadius(),l.getRadius(),i,l.getDiameter(),offX,offY);
@@ -258,7 +270,7 @@ public class Renderer {
 
         while(true){
             int screenX=x0-l.getRadius()+offX;
-            int screenY=y0 -l.getRadius() +offY;
+            int screenY=y0-l.getRadius()+offY;
 
             if(screenX<0 || screenX >= pW || screenY<0 || screenY >=pH){
                 return;

@@ -10,7 +10,7 @@ public class Font {
     public Font(String path){
         fontImage = new Image(path);
         offsets = new int[256];
-        widths = new int[256    ];
+        widths = new int[256];
         int unicode=0;
         for(int i=0; i<fontImage.getW();i++){
             if(fontImage.getP()[i] == 0xff0000ff){

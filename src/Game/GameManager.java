@@ -20,7 +20,6 @@ public class GameManager extends AbstractGame {
 
     public GameManager(){
         image = new Image("/test.png");
-        image.setAlpha(false);
         light = new Light(200,0xffffffff);
         background= new Image("/background.png");
         clip = new SoundClip("/audio/ungingan.wav");
