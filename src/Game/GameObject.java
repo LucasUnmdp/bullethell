@@ -10,7 +10,7 @@ public abstract class GameObject {
     protected int width,height;
     protected boolean dead=false;
 
-    public abstract void update(GameContainer gc,float dt);
+    public abstract void update(GameContainer gc, GameManager gm,float dt);
     public abstract void render(GameContainer gc, Renderer r);
 
     public String getTag() {
@@ -55,6 +55,14 @@ public abstract class GameObject {
 
     public boolean isDead() {
         return dead;
+    }
+    public boolean isIn(float posX, float posY, GameContainer gc){
+        boolean flag= true;
+        flag&=posY>=0;
+        flag&=posX>=0;
+        flag&= posX<gc.getWidht();
+        flag&= posY<gc.getHeight();
+        return flag;
     }
 
     public void setDead(boolean dead) {
