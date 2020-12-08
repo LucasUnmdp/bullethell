@@ -39,22 +39,29 @@ public class Player extends GameObject{
 
         //Shoot Start
         if(fireCD>0)
-            fireCD-=1;
+            this.fireCD--;
         if(fireCD==0) {
-            fireCD=rateFire;
-            if (gc.getInput().isKey(KeyEvent.VK_UP))
+            if (gc.getInput().isKey(KeyEvent.VK_UP)) {
                 gm.addObject(new PlayerBullet(2, posX + width / 5, posY - height / 2));
+                fireCD=rateFire;
+            }
             else
-                if (gc.getInput().isKey(KeyEvent.VK_RIGHT))
+                if (gc.getInput().isKey(KeyEvent.VK_RIGHT)){
                     gm.addObject(new PlayerBullet(3, posX + width, posY + height / 5));
+                    fireCD=rateFire;
+                }
                 else
-                    if (gc.getInput().isKey(KeyEvent.VK_DOWN))
+                    if (gc.getInput().isKey(KeyEvent.VK_DOWN)) {
                         gm.addObject(new PlayerBullet(4, posX + width / 5, posY + height));
+                        fireCD = rateFire;
+                    }
                     else
-                        if (gc.getInput().isKey(KeyEvent.VK_LEFT))
+                        if (gc.getInput().isKey(KeyEvent.VK_LEFT)) {
                             gm.addObject(new PlayerBullet(1, posX - width / 2, posY + height / 5));
-
+                            fireCD = rateFire;
+                        }
         }
+        //Shoot finish
 
     }
 
