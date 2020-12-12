@@ -15,6 +15,9 @@ public class PlayerBullet extends GameObject {
         this.direction=direction;
         this.posX=posX;
         this.posY=posY;
+        this.width=10;
+        this.height=10;
+        tag="player-bullet";
     }
 
     @Override
@@ -40,7 +43,8 @@ public class PlayerBullet extends GameObject {
         //Movement finish
 
         //Bullet life start
-        if(!isIn(posX,posY,gc)){
+        if(!isIn(0,0,gc)){
+            System.out.println("balita dead");
             this.dead=true;
         }
         //Bullet life finish
@@ -49,6 +53,6 @@ public class PlayerBullet extends GameObject {
 
     @Override
     public void render(GameContainer gc, Renderer r) {
-        r.fillRect((int)posX,(int)posY,10,10,0xffff0000);
+        r.fillRect((int)posX,(int)posY,width,height,0xff0000ff);
     }
 }

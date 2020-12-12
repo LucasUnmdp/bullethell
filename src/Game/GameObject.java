@@ -56,13 +56,35 @@ public abstract class GameObject {
     public boolean isDead() {
         return dead;
     }
-    public boolean isIn(float posX, float posY, GameContainer gc){
-        boolean flag= true;
-        flag&=posY>=0;
-        flag&=posX>=0;
-        flag&= posX<gc.getWidht();
-        flag&= posY<gc.getHeight();
-        return flag;
+    public boolean isIn(float offx, float offy,GameContainer gc){
+        if(posY+offy<0 || posY+height+offy>gc.getHeight())
+            return false;
+        if(posX+offx<0 || posX+width+offx>gc.getWidht())
+            return false;
+        return true;
+    }
+
+    public boolean checkCollision(GameObject r){
+        int tw = this.width;
+        int th = this.height;
+        int rw = r.width;
+        int rh = r.height;
+        if (rw <= 0 || rh <= 0 || tw <= 0 || th <= 0) {
+            return false;
+        }
+        int tx =(int) this.posX;
+        int ty =(int) this.posY;
+        int rx =(int) r.posX;
+        int ry =(int) r.posY;
+        rw += rx;
+        rh += ry;
+        tw += tx;
+        th += ty;
+        //      overflow || intersect
+        return ((rw < rx || rw > tx) &&
+                (rh < ry || rh > ty) &&
+                (tw < tx || tw > rx) &&
+                (th < ty || th > ry));
     }
 
     public void setDead(boolean dead) {

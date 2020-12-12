@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class Player extends GameObject{
 
     private float speed = 150;
-    private final float rateFire = 15;
+    private final float rateFire = 60;
     private float fireCD=0;
 
     public Player(int posX,int posY){
@@ -23,16 +23,16 @@ public class Player extends GameObject{
     @Override
     public void update(GameContainer gc,GameManager gm, float dt) {
         //Movement Start
-        if(gc.getInput().isKey(KeyEvent.VK_W) && isIn(posX,posY-dt*speed,gc)){
+        if(gc.getInput().isKey(KeyEvent.VK_W) && isIn(0,-dt*speed,gc)){
             posY-=dt*speed;
         }
-        if(gc.getInput().isKey(KeyEvent.VK_S)&& isIn(posX,posY+height+dt*speed,gc)){
+        if(gc.getInput().isKey(KeyEvent.VK_S)&& isIn(0,dt*speed,gc)){
             posY+=dt*speed;
         }
-        if(gc.getInput().isKey(KeyEvent.VK_A)&& isIn(posX-dt*speed,posY,gc)){
+        if(gc.getInput().isKey(KeyEvent.VK_A)&& isIn(-dt*speed,0,gc)){
             posX-=dt*speed;
         }
-        if(gc.getInput().isKey(KeyEvent.VK_D)&& isIn(posX+width+dt*speed,posY,gc)){
+        if(gc.getInput().isKey(KeyEvent.VK_D)&& isIn(dt*speed,0,gc)){
             posX+=dt*speed;
         }
         //Movement Finish
