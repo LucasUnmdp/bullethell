@@ -9,7 +9,6 @@ public class PlayerBullet extends GameObject {
 
     private float speed=200;
     private int direction;
-    float posX,posY;
 
     public PlayerBullet (int direction,float posX, float posY){
         this.direction=direction;
@@ -43,10 +42,8 @@ public class PlayerBullet extends GameObject {
         //Movement finish
 
         //Bullet life start
-        if(!isIn(0,0,gc)){
-            System.out.println("balita dead");
+        if(!isIn(0,0,gc))
             this.dead=true;
-        }
         //Bullet life finish
 
     }

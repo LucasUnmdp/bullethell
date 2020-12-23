@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class Player extends GameObject{
 
     private float speed = 150;
-    private final float rateFire = 60;
+    private final float rateFire = 20;
     private float fireCD=0;
 
     public Player(int posX,int posY){

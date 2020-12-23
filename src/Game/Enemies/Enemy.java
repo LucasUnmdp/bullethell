@@ -5,7 +5,6 @@ import Engine.Renderer;
 import Game.GameManager;
 import Game.GameObject;
 
-import java.awt.*;
 import java.util.Random;
 
 public class Enemy extends GameObject {
@@ -35,12 +34,13 @@ public class Enemy extends GameObject {
             steps=8;
         }
         steps--;
-        if(isIn((int)posX,(int)posY+speed * dt * directionY,gc)) {
-            this.posY += speed * dt * directionY;
-        }
-        if(isIn((int)posX+speed * dt * directionX,(int)posY,gc)){
-            this.posX += speed * dt * directionX;
-        }
+        this.posY += speed * dt * directionY;
+        this.posX += speed * dt * directionX;
+
+        //Enemy life start
+        if(!isIn(0,0,gc))
+            this.dead=true;
+        //Enemy life finish
     }
 
     @Override

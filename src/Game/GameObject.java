@@ -57,9 +57,9 @@ public abstract class GameObject {
         return dead;
     }
     public boolean isIn(float offx, float offy,GameContainer gc){
-        if(posY+offy<0 || posY+height+offy>gc.getHeight())
+        if(posY+offy<-1 || posY+height+offy>gc.getHeight()+1)
             return false;
-        if(posX+offx<0 || posX+width+offx>gc.getWidht())
+        if(posX+offx<-1 || posX+width+offx>gc.getWidht()+1)
             return false;
         return true;
     }
