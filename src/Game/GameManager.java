@@ -4,13 +4,9 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
-import Engine.gfx.ImageTile;
-import Engine.gfx.Light;
-import Engine.sfx.SoundClip;
 import Game.Enemies.Enemy;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 

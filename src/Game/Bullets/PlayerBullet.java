@@ -1,28 +1,19 @@
 package Game.Bullets;
 
 import Engine.GameContainer;
-import Engine.Renderer;
 import Game.GameManager;
 import Game.GameObject;
 
-public class PlayerBullet extends GameObject {
+import java.util.ArrayList;
 
-    private float speed=200;
-    private int direction;
+public class PlayerBullet extends Bullet{
 
-    public PlayerBullet (int direction,float posX, float posY){
-        this.direction=direction;
-        this.posX=posX;
-        this.posY=posY;
-        this.width=10;
-        this.height=10;
-        tag="player-bullet";
+    public PlayerBullet(int direction, float posX, float posY) {
+        super(direction, posX, posY);
     }
 
     @Override
-    public void update(GameContainer gc, GameManager gm, float dt) {
-
-        //Movement start
+    void move(float dt) {
         float offX=0,offY=0;
         switch (direction){
             case 1:
@@ -39,17 +30,16 @@ public class PlayerBullet extends GameObject {
         }
         this.posX+=offX;
         this.posY+=offY;
-        //Movement finish
-
-        //Bullet life start
-        if(!isIn(0,0,gc))
-            this.dead=true;
-        //Bullet life finish
-
     }
 
     @Override
-    public void render(GameContainer gc, Renderer r) {
-        r.fillRect((int)posX,(int)posY,width,height,0xff0000ff);
+    void collision(GameManager gm) {
+        ArrayList<GameObject> list=gm.getEnemies();
+        for(GameObject e : list){
+            if(this.checkCollision(e)) {
+                e.setDead(true);
+                this.dead=true;
+            }
+        }
     }
 }

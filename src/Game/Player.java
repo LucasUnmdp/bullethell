@@ -2,6 +2,7 @@ package Game;
 
 import Engine.GameContainer;
 import Engine.Renderer;
+import Game.Bullets.Bullet;
 import Game.Bullets.PlayerBullet;
 
 import java.awt.event.KeyEvent;
