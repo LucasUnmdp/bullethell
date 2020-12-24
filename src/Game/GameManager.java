@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 
 public class GameManager extends AbstractGame {
-    public final static int TS=16;
 
     private Image background;
     private HUD hud;
@@ -47,7 +46,7 @@ public class GameManager extends AbstractGame {
                 enemies.remove(i--);
             }
         }
-        enemies.add(new normalEnemy((float) (Math.random()*gc.getWidht()),0));
+        //enemies.add(new normalEnemy((float) (Math.random()*gc.getWidht()),0));
     }
 
     @Override
