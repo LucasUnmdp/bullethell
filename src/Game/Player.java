@@ -28,8 +28,8 @@ public class Player extends GameObject{
         hp=3;
         this.posX=posX;
         this.posY=posY;
-        this.width=26;
-        this.height=32;
+        this.width=16;
+        this.height=31;
         this.image = new ImageTile("/player/default.png",32,32);
     }
 
@@ -58,35 +58,42 @@ public class Player extends GameObject{
         if(fireCD>0) {
             this.fireCD--;
         }
-        if(fireCD==0) {
-            if (gc.getInput().isKey(KeyEvent.VK_UP)) {
-                gm.addObject(new PlayerBullet(2, posX + width / 2, posY - height / 2));
-                tileX=3;
-                tileY=1;
+        if (gc.getInput().isKey(KeyEvent.VK_UP)) {
+            if(fireCD==0) {
+                gm.addObject(new PlayerBullet(2, posX +3, posY -height/2));
                 fireCD=rateFire;
+                tileY=1;
+            }
+            tileX=3;
             }
             else
                 if (gc.getInput().isKey(KeyEvent.VK_RIGHT)){
-                    gm.addObject(new PlayerBullet(3, posX + width, posY + height / 5));
+                    if(fireCD==0) {
+                        gm.addObject(new PlayerBullet(3, posX + width, posY + height / 2));
+                        fireCD=rateFire;
+                        tileY=1;
+                    }
                     tileX=1;
-                    tileY=1;
-                    fireCD=rateFire;
                 }
                 else
                     if (gc.getInput().isKey(KeyEvent.VK_DOWN)) {
-                        gm.addObject(new PlayerBullet(4, posX + width / 5, posY + height));
+                        if(fireCD==0) {
+                            gm.addObject(new PlayerBullet(4, posX + width / 5, posY + height/2));
+                            fireCD = rateFire;
+                            tileY=1;
+                        }
                         tileX=0;
-                        tileY=1;
-                        fireCD = rateFire;
                     }
                     else
                         if (gc.getInput().isKey(KeyEvent.VK_LEFT)) {
-                            gm.addObject(new PlayerBullet(1, posX - width / 2, posY + height / 5));
+                            if(fireCD==0) {
+                                gm.addObject(new PlayerBullet(1, posX - width / 2, posY + height / 2));
+                                fireCD = rateFire;
+                                tileY=1;
+                            }
                             tileX=2;
-                            tileY=1;
-                            fireCD = rateFire;
+
                         }
-        }
         //Shoot finish
 
         //enemy collision start
@@ -114,7 +121,7 @@ public class Player extends GameObject{
     @Override
     public void render(GameContainer gc, Renderer r) {
         r.drawImageTile(this.image,(int)this.posX,(int)this.posY,tileX,tileY);
-        if(tileY==1){
+        if(tileY==1 && fireCD==rateFire-5){
             tileY--;
         }
     }
