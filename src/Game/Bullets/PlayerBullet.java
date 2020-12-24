@@ -1,6 +1,5 @@
 package Game.Bullets;
 
-import Engine.GameContainer;
 import Game.GameManager;
 import Game.GameObject;
 

@@ -4,7 +4,7 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
-import Game.Enemies.Enemy;
+import Game.Enemies.normalEnemy;
 import Game.Visual.HUD;
 
 import java.awt.event.KeyEvent;
@@ -47,8 +47,7 @@ public class GameManager extends AbstractGame {
                 enemies.remove(i--);
             }
         }
-        if(gc.getInput().isKeyDown(KeyEvent.VK_F1))
-            enemies.add(new Enemy());
+        enemies.add(new normalEnemy((float) (Math.random()*gc.getWidht()),0));
     }
 
     @Override
