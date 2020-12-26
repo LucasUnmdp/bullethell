@@ -4,10 +4,8 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
-import Game.Enemies.normalEnemy;
 import Game.Visual.HUD;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 
@@ -15,6 +13,7 @@ public class GameManager extends AbstractGame {
 
     private Image background;
     private HUD hud;
+    public final static int ambient=0xff232323;
 
     private Player player;
     private ArrayList<GameObject> objects = new ArrayList<GameObject>();
@@ -25,7 +24,8 @@ public class GameManager extends AbstractGame {
 
     @Override
     public void init(GameContainer gc) {
-        gc.getRenderer().setAmbientColor(-1);
+        gc.getHUD().setAmbientColor(-1);
+        gc.getRenderer().setAmbientColor(ambient);
         player = new Player(gc.getWidht()/2,gc.getHeight()/2);
         background = new Image("/background.png");
         hud= new HUD(player);
@@ -59,7 +59,11 @@ public class GameManager extends AbstractGame {
         for(GameObject obj: enemies){
             obj.render(gc,r);
         }
-        hud.render(gc,r);
+    }
+
+    @Override
+    public void renderHUD(GameContainer gc, Renderer hUD) {
+        hud.render(gc,hUD);
     }
 
     public void addObject(GameObject obj){

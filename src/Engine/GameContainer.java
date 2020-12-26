@@ -1,14 +1,12 @@
 package Engine;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-
 public class GameContainer implements Runnable{
 
     private Thread thread;
     private boolean running=false;
     private Window window;
     private Renderer renderer;
+    private Renderer hUD;
     private AbstractGame game;
     private Input input;
     private final double UPDATE_CAPE = 1.0/60.0;
@@ -23,6 +21,7 @@ public class GameContainer implements Runnable{
     public void start(){
         window= new Window(this);
         renderer = new Renderer(this);
+        hUD = new Renderer(this);
         input = new Input(this);
 
         thread = new Thread(this);
@@ -68,10 +67,13 @@ public class GameContainer implements Runnable{
                 }
             }
             if(render){
+                hUD.clear();
                 renderer.clear();
                 game.render(this,renderer);
                 renderer.process();
-                renderer.drawText("FPS:"+fps,widht-45,0,0xffffff00);
+                game.renderHUD(this,hUD);
+                hUD.process();
+                hUD.drawText("FPS:"+fps,widht-45,0,0xffffff00);
                 window.update();
                 frames++;
             }else{
@@ -131,5 +133,9 @@ public class GameContainer implements Runnable{
 
     public Renderer getRenderer() {
         return renderer;
+    }
+
+    public Renderer getHUD() {
+        return hUD;
     }
 }
