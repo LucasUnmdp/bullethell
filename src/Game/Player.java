@@ -58,41 +58,53 @@ public class Player extends GameObject{
         if(fireCD>0) {
             this.fireCD--;
         }
-        if (gc.getInput().isKey(KeyEvent.VK_UP)) {
+        if (gc.getInput().isKey(KeyEvent.VK_UP) && !gc.getInput().isKey(KeyEvent.VK_LEFT)) {
             if(fireCD==0) {
-                gm.addObject(new PlayerBullet(2, posX +3, posY -height/2));
-                fireCD=rateFire;
-                tileY=1;
+                if(gc.getInput().isKey(KeyEvent.VK_RIGHT))
+                    gm.addObject(new PlayerBullet(8, posX + width, posY));
+                else
+                    gm.addObject(new PlayerBullet(2, posX + 3, posY - height / 2));
+                fireCD = rateFire;
+                tileY = 1;
             }
             tileX=3;
             }
             else
                 if (gc.getInput().isKey(KeyEvent.VK_RIGHT)){
-                    if(fireCD==0) {
-                        gm.addObject(new PlayerBullet(3, posX + width, posY + height / 2));
-                        fireCD=rateFire;
-                        tileY=1;
-                    }
-                    tileX=1;
+                        if (fireCD == 0) {
+                            if (gc.getInput().isKey(KeyEvent.VK_DOWN))
+                                gm.addObject(new PlayerBullet(5, posX + width, posY + height));
+                            else
+                                gm.addObject(new PlayerBullet(3, posX + width, posY + height / 2));
+                            fireCD = rateFire;
+                            tileY = 1;
+                        }
+                        tileX=1;
                 }
                 else
                     if (gc.getInput().isKey(KeyEvent.VK_DOWN)) {
-                        if(fireCD==0) {
-                            gm.addObject(new PlayerBullet(4, posX + width / 5, posY + height/2));
-                            fireCD = rateFire;
-                            tileY=1;
-                        }
-                        tileX=0;
+                            if (fireCD == 0) {
+                                if (gc.getInput().isKey(KeyEvent.VK_LEFT))
+                                    gm.addObject(new PlayerBullet(6, posX, posY + height));
+                                else
+                                    gm.addObject(new PlayerBullet(4, posX + width / 5, posY + height / 2));
+                                fireCD = rateFire;
+                                tileY = 1;
+                            }
+                            tileX = 0;
                     }
                     else
                         if (gc.getInput().isKey(KeyEvent.VK_LEFT)) {
-                            if(fireCD==0) {
-                                gm.addObject(new PlayerBullet(1, posX - width / 2, posY + height / 2));
+                            if (fireCD == 0) {
+                                if (gc.getInput().isKey(KeyEvent.VK_UP))
+                                    gm.addObject(new PlayerBullet(7, posX, posY));
+                                else
+                                    gm.addObject(new PlayerBullet(1, posX - width / 2, posY + height / 2));
+
                                 fireCD = rateFire;
-                                tileY=1;
+                                tileY = 1;
                             }
                             tileX=2;
-
                         }
         //Shoot finish
 

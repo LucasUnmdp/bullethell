@@ -2,11 +2,8 @@ package Game.Bullets;
 
 import Engine.GameContainer;
 import Engine.Renderer;
-import Game.Enemies.Enemy;
 import Game.GameManager;
 import Game.GameObject;
-
-import java.util.ArrayList;
 
 public abstract class Bullet extends GameObject {
 
@@ -17,16 +14,13 @@ public abstract class Bullet extends GameObject {
         this.direction=direction;
         this.posX=posX;
         this.posY=posY;
-        this.width=10;
-        this.height=10;
-        tag="player-bullet";
     }
 
     @Override
     public void update(GameContainer gc, GameManager gm, float dt) {
         move(dt);
         collision(gm);
-        bulletlife(gc);
+        bulletLife(gc);
     }
 
     @Override
@@ -37,7 +31,7 @@ public abstract class Bullet extends GameObject {
     abstract void collision(GameManager gm);
 
 
-    protected void bulletlife(GameContainer gc){
+    protected void bulletLife(GameContainer gc){
         if(!isIn(0,0,gc))
             this.dead=true;
     }
