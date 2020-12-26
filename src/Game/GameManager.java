@@ -4,6 +4,8 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
+import Game.Enemies.NormalEnemy;
+import Game.Enemies.Spawner;
 import Game.Visual.HUD;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class GameManager extends AbstractGame {
     private Image background;
     private HUD hud;
     public final static int ambient=0xff232323;
+    private Spawner spawner;
 
     private Player player;
     private ArrayList<GameObject> objects = new ArrayList<GameObject>();
@@ -29,10 +32,13 @@ public class GameManager extends AbstractGame {
         player = new Player(gc.getWidht()/2,gc.getHeight()/2);
         background = new Image("/background.png");
         hud= new HUD(player);
+        enemies.add(new NormalEnemy(100,100));
+        this.spawner=new Spawner(enemies,gc);
     }
 
     @Override
     public void update(GameContainer gc, float dt) {
+        spawner.spawn();
         player.update(gc,this,dt);
         for(int i=0; i<objects.size();i++){
             objects.get(i).update(gc,this,dt);
@@ -46,7 +52,6 @@ public class GameManager extends AbstractGame {
                 enemies.remove(i--);
             }
         }
-        //enemies.add(new normalEnemy((float) (Math.random()*gc.getWidht()),0));
     }
 
     @Override
