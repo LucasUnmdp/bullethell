@@ -3,6 +3,7 @@ package Game.Bullets;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
+import Engine.gfx.Light;
 import Game.GameManager;
 import Game.GameObject;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public class PlayerBullet extends Bullet{
     private Image image;
+    private Light light;
 
     public PlayerBullet(int direction, float posX, float posY) {
         super(direction, posX, posY);
@@ -17,6 +19,7 @@ public class PlayerBullet extends Bullet{
         this.height=10;
         tag="player-bullet";
         this.image= new Image("/bullets/default.png");
+        this.light= new Light(15,0xeec938);
     }
 
     @Override
@@ -69,5 +72,6 @@ public class PlayerBullet extends Bullet{
     @Override
     public void render(GameContainer gc, Renderer r) {
         r.drawImage(image,(int)posX,(int)posY);
+        r.drawLight(light,(int)posX+width/2,(int)posY+height/2);
     }
 }

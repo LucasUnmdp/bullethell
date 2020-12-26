@@ -4,6 +4,7 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
 import Engine.gfx.ImageTile;
+import Engine.gfx.Light;
 import Game.Bullets.Bullet;
 import Game.Bullets.PlayerBullet;
 
@@ -19,6 +20,7 @@ public class Player extends GameObject{
     private int inmunityCD=0;
     private int hp;
     private int tileX=0,tileY=0;
+    private Light light;
 
     private boolean inmunity=false;
     private ImageTile image;
@@ -31,6 +33,7 @@ public class Player extends GameObject{
         this.width=16;
         this.height=31;
         this.image = new ImageTile("/player/default.png",32,32);
+        this.light = new Light(100,0xffffff);
     }
 
     @Override
@@ -133,6 +136,7 @@ public class Player extends GameObject{
     @Override
     public void render(GameContainer gc, Renderer r) {
         r.drawImageTile(this.image,(int)this.posX,(int)this.posY,tileX,tileY);
+        r.drawLight(light,(int)posX+width/2,(int)posY+height/2);
         if(tileY==1 && fireCD==rateFire-5){
             tileY--;
         }
