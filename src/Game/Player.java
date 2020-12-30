@@ -33,7 +33,7 @@ public class Player extends GameObject{
         this.width=16;
         this.height=31;
         this.image = new ImageTile("/player/default.png",32,32);
-        this.light = new Light(100,0xffffff);
+        this.light = new Light(200,0xffffff);
     }
 
     @Override

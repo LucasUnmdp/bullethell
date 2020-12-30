@@ -4,10 +4,6 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.ImageTile;
-import Game.GameManager;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class MenuManager extends AbstractGame {
     private Button startButton;
@@ -25,6 +21,7 @@ public class MenuManager extends AbstractGame {
 
     @Override
     public void render(GameContainer gc, Renderer r) {
+        r.fillRect(0,0,480,360,0xff000000);
         startButton.render(gc,r);
     }
 

@@ -17,6 +17,7 @@ public class GameManager extends AbstractGame {
     private HUD hud;
     public final static int ambient=0xff232323;
     private Spawner spawner;
+    private float bgoff=0;
 
     private Player player;
     private ArrayList<GameObject> objects = new ArrayList<GameObject>();
@@ -51,11 +52,18 @@ public class GameManager extends AbstractGame {
                 enemies.remove(i--);
             }
         }
+        if(player.isDead())
+            gc.setGame(new MenuManager());
+        bgoff+=dt*30;
+        if(bgoff>720){
+            bgoff=0;
+        }
     }
 
     @Override
     public void render(GameContainer gc, Renderer r) {
-        r.drawImage(background,0,0);
+        r.drawImage(background,0,(int)bgoff-720);
+        r.drawImage(background,0,(int)bgoff);
         player.render(gc,r);
         for(GameObject obj: objects){
             obj.render(gc,r);
