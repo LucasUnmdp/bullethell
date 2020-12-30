@@ -4,9 +4,9 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
-import Game.Enemies.NormalEnemy;
 import Game.Enemies.Spawner;
 import Game.Visual.HUD;
+import Game.Visual.MenuManager;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,6 @@ public class GameManager extends AbstractGame {
         player = new Player(gc.getWidht()/2,gc.getHeight()/2);
         background = new Image("/background.png");
         hud= new HUD(player);
-        enemies.add(new NormalEnemy(100,100));
         this.spawner=new Spawner(enemies,gc);
     }
 
@@ -88,7 +87,7 @@ public class GameManager extends AbstractGame {
     }
 
     public static void main(String args[]){
-        GameContainer gc= new GameContainer(new GameManager());
+        GameContainer gc= new GameContainer(new MenuManager());
         gc.setWidht(480);
         gc.setHeight(360);
         gc.setScale(2f);

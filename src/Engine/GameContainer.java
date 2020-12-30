@@ -99,6 +99,12 @@ public class GameContainer implements Runnable{
         return height;
     }
 
+    public void setGame(AbstractGame game) {
+        this.stop();
+        this.game = game;
+        this.run();
+    }
+
     public float getScale() {
         return scale;
     }

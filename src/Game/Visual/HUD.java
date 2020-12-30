@@ -14,7 +14,7 @@ public class HUD {
 
     public HUD(GameObject player){
         this.player=(Player)player;
-        this.hp= new Image("/hp.png");
+        this.hp= new Image("/hud/hp.png");
     }
 
     public void update(GameContainer gc, GameManager gm, float dt){
