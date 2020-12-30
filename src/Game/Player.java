@@ -146,4 +146,8 @@ public class Player extends GameObject{
         return this.hp;
     }
 
+    public void damage(){
+        this.hp--;
+    }
+
 }

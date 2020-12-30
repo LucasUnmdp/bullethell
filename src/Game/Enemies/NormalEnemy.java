@@ -14,6 +14,7 @@ public class NormalEnemy extends Enemy{
     private int currentSteps=0;
     private int pause=0;
     private float offX,offY;
+    private int tileX,tileY;
 
     public NormalEnemy(float posX, float posY){
         super();
@@ -21,7 +22,7 @@ public class NormalEnemy extends Enemy{
         this.posY=posY;
         this.width=16;
         this.height=16;
-        this.speed=200;
+        this.speed=100;
         this.image= new ImageTile("/enemies/enemy1.png",17,17);
         this.light= new Light(8,0x00ff00);
     }
@@ -48,7 +49,7 @@ public class NormalEnemy extends Enemy{
 
     @Override
     public void render(GameContainer gc, Renderer r) {
-        r.drawImageTile(image,(int)posX,(int)posY,0,0);
+        r.drawImageTile(image,(int)posX,(int)posY,tileX,tileY);
         r.drawLight(light,(int)posX+width/2,(int)posY+height/2);
     }
 
@@ -56,15 +57,19 @@ public class NormalEnemy extends Enemy{
         switch ((int)(Math.random()*7+1)){
             case 1:
                 offX=-dt*speed;
+                tileX=1;
                 break;
             case 2:
                 offY=-dt*speed;
+                tileX=3;
                 break;
             case 3:
                 offX=dt*speed;
+                tileX=2;
                 break;
             case 4:
                 offY=dt*speed;
+                tileX=0;
                 break;
             case 5:
                 offY=dt*speed;
