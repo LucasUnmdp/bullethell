@@ -10,7 +10,7 @@ public abstract class Bullet extends GameObject {
     protected float speed=200;
     protected int direction;
 
-    public Bullet(int direction, float posX, float posY){
+    public Bullet(float posX, float posY){
         this.direction=direction;
         this.posX=posX;
         this.posY=posY;

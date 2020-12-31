@@ -4,6 +4,7 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Game.GameManager;
 import Game.GameObject;
+import Game.Player;
 
 public abstract class Enemy extends GameObject {
 
@@ -13,9 +14,11 @@ public abstract class Enemy extends GameObject {
         this.tag="enemy";
     }
     abstract void move(float dt);
+    abstract void shoot(GameManager gm);
     @Override
     public void update(GameContainer gc, GameManager gm, float dt) {
         move(dt);
+        shoot(gm);
         //Enemy life start
         if(!isIn(0,0,gc))
             this.dead=true;

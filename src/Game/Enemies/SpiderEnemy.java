@@ -5,8 +5,9 @@ import Engine.Renderer;
 import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
 import Game.GameManager;
+import Game.Player;
 
-public class NormalEnemy extends Enemy{
+public class SpiderEnemy extends Enemy{
 
     private ImageTile image;
     private Light light;
@@ -16,14 +17,14 @@ public class NormalEnemy extends Enemy{
     private float offX,offY;
     private int tileX,tileY;
 
-    public NormalEnemy(float posX, float posY){
+    public SpiderEnemy(float posX, float posY){
         super();
         this.posX=posX;
         this.posY=posY;
         this.width=16;
         this.height=16;
         this.speed=100;
-        this.image= new ImageTile("/enemies/enemy1.png",17,17);
+        this.image= new ImageTile("/enemies/spider_enemy.png",17,17);
         this.light= new Light(8,0x00ff00);
     }
     @Override
@@ -43,8 +44,8 @@ public class NormalEnemy extends Enemy{
     }
 
     @Override
-    public void update(GameContainer gc, GameManager gm, float dt) {
-        super.update(gc, gm, dt);
+    void shoot(GameManager gm) {
+
     }
 
     @Override

@@ -1,25 +1,22 @@
-package Game.Enemies;
+package Game.Spawners;
 
 import Engine.GameContainer;
+import Game.Enemies.SpiderEnemy;
 import Game.GameObject;
 
 import java.util.ArrayList;
 
-public class Spawner {
+public class SpiderSpawner extends Spawner {
 
-    private ArrayList<GameObject> enemies;
-    private GameContainer gc;
-    private final int couldown=10;
-    private int time=0;
-
-    public Spawner(ArrayList<GameObject> enemies, GameContainer gc){
-        this.enemies=enemies;
-        this.gc=gc;
+    public SpiderSpawner(ArrayList<GameObject> enemies, GameContainer gc) {
+        super(enemies, gc);
+        this.cooldown =30;
     }
 
-    public void spawn(){
+    @Override
+    public void spawn() {
         if(time==0) {
-            time=couldown;
+            time= cooldown;
             float x, y;
 
             if (Math.random() >= 0.5)
@@ -32,7 +29,7 @@ public class Spawner {
             else
                 y = (float) (Math.random() * (gc.getHeight() * 1 / 4));
 
-            enemies.add(new NormalEnemy(x, y));
+            enemies.add(new SpiderEnemy(x, y));
         }
         time--;
     }

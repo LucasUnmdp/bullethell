@@ -14,7 +14,8 @@ public class PlayerBullet extends Bullet{
     private Light light;
 
     public PlayerBullet(int direction, float posX, float posY) {
-        super(direction, posX, posY);
+        super(posX, posY);
+        this.direction=direction;
         this.width=10;
         this.height=10;
         tag="player-bullet";

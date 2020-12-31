@@ -4,10 +4,13 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
-import Game.Enemies.Spawner;
+import Game.Enemies.BirdEnemy;
+import Game.Spawners.BirdSpawner;
+import Game.Spawners.SpiderSpawner;
 import Game.Visual.HUD;
 import Game.Visual.MenuManager;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 
@@ -16,7 +19,8 @@ public class GameManager extends AbstractGame {
     private Image background;
     private HUD hud;
     public final static int ambient=0xff232323;
-    private Spawner spawner;
+    private SpiderSpawner spawner;
+    private BirdSpawner spawnerxd;
     private float bgoff=0;
 
     private Player player;
@@ -33,12 +37,14 @@ public class GameManager extends AbstractGame {
         player = new Player(gc.getWidht()/2,gc.getHeight()/2);
         background = new Image("/background.png");
         hud= new HUD(player);
-        this.spawner=new Spawner(enemies,gc);
+        this.spawner=new SpiderSpawner(enemies,gc);
+        spawnerxd= new BirdSpawner(enemies,gc);
     }
 
     @Override
     public void update(GameContainer gc, float dt) {
         spawner.spawn();
+        spawnerxd.spawn();
         player.update(gc,this,dt);
         for(int i=0; i<objects.size();i++){
             objects.get(i).update(gc,this,dt);
@@ -58,6 +64,8 @@ public class GameManager extends AbstractGame {
         if(bgoff>720){
             bgoff=0;
         }
+        if(gc.getInput().isKeyDown(KeyEvent.VK_F1))
+            enemies.add(new BirdEnemy(250,0));
     }
 
     @Override

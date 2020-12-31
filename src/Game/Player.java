@@ -116,9 +116,7 @@ public class Player extends GameObject{
             ArrayList<GameObject> enemies = gm.getEnemies();
             for (GameObject e : enemies) {
                 if (this.checkCollision(e)) {
-                    this.hp--;
-                    if(hp==0)
-                        this.dead=true;
+                    this.damage();
                     this.inmunityCD=inmunityTime;
                     this.inmunity=true;
                     e.setDead(true);
@@ -148,6 +146,8 @@ public class Player extends GameObject{
 
     public void damage(){
         this.hp--;
+        if(hp==0)
+            this.dead=true;
     }
 
 }
