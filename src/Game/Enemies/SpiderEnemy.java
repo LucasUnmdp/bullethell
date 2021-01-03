@@ -9,8 +9,6 @@ import Game.Player;
 
 public class SpiderEnemy extends Enemy{
 
-    private ImageTile image;
-    private Light light;
     private final int steps=20;
     private int currentSteps=0;
     private int pause=0;
@@ -28,7 +26,7 @@ public class SpiderEnemy extends Enemy{
         this.light= new Light(8,0x00ff00);
     }
     @Override
-    void move(float dt) {
+    void move(GameContainer gc,float dt) {
         if(currentSteps>0) {
             this.posX += offX;
             this.posY += offY;
@@ -44,7 +42,7 @@ public class SpiderEnemy extends Enemy{
     }
 
     @Override
-    void shoot(GameManager gm) {
+    void shoot(GameContainer gc,GameManager gm) {
 
     }
 

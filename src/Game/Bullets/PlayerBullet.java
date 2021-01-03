@@ -4,6 +4,7 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
 import Engine.gfx.Light;
+import Game.Enemies.Enemy;
 import Game.GameManager;
 import Game.GameObject;
 
@@ -24,7 +25,7 @@ public class PlayerBullet extends Bullet{
     }
 
     @Override
-    void move(float dt) {
+    void move(GameContainer gc,float dt) {
         float offX=0,offY=0;
         switch (direction){
             case 1:
@@ -64,7 +65,7 @@ public class PlayerBullet extends Bullet{
         ArrayList<GameObject> list=gm.getEnemies();
         for(GameObject e : list){
             if(this.checkCollision(e)) {
-                e.setDead(true);
+                ((Enemy) e).damage(1);
                 this.dead=true;
             }
         }

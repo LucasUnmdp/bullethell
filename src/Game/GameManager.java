@@ -4,7 +4,7 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
-import Game.Enemies.BirdEnemy;
+import Game.Enemies.BrainEnemy;
 import Game.Spawners.BirdSpawner;
 import Game.Spawners.SpiderSpawner;
 import Game.Visual.HUD;
@@ -43,8 +43,8 @@ public class GameManager extends AbstractGame {
 
     @Override
     public void update(GameContainer gc, float dt) {
-        spawner.spawn();
-        spawnerxd.spawn();
+        //spawner.spawn();
+        //spawnerxd.spawn();
         player.update(gc,this,dt);
         for(int i=0; i<objects.size();i++){
             objects.get(i).update(gc,this,dt);
@@ -65,7 +65,7 @@ public class GameManager extends AbstractGame {
             bgoff=0;
         }
         if(gc.getInput().isKeyDown(KeyEvent.VK_F1))
-            enemies.add(new BirdEnemy(250,0));
+            enemies.add(new BrainEnemy(250,0));
     }
 
     @Override

@@ -18,7 +18,7 @@ public abstract class Bullet extends GameObject {
 
     @Override
     public void update(GameContainer gc, GameManager gm, float dt) {
-        move(dt);
+        move(gc,dt);
         collision(gm);
         bulletLife(gc);
     }
@@ -27,7 +27,7 @@ public abstract class Bullet extends GameObject {
     public void render(GameContainer gc, Renderer r) {
         r.fillRect((int)posX,(int)posY,width,height,0xff0000ff);
     }
-    abstract void move(float dt);
+    abstract void move(GameContainer gc,float dt);
     abstract void collision(GameManager gm);
 
 

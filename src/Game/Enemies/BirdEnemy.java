@@ -11,8 +11,6 @@ import Game.GameManager;
 public class BirdEnemy extends Enemy{
     private float offX;
     private int shootCD=60,shoots=3,actualShoot=shootCD,shootLeft=shoots,miniShootCD=10, miniCD=0,tileX,tileY;
-    private ImageTile image;
-    private Light light;
 
     public BirdEnemy(float posX, float posY){
         super();
@@ -28,17 +26,16 @@ public class BirdEnemy extends Enemy{
             tileX=1;
             this.speed = -75;
         }
-        this.light= new Light(5,0xe53ae5);
-        this.image= new ImageTile("/enemies/bird_enemy.png",this.width,this.height);
+
     }
     @Override
-    void move(float dt) {
+    void move(GameContainer gc,float dt) {
         posY+=dt*speed;
         posX= (float) (Math.sin((posY)/40)*50+offX);
     }
 
     @Override
-    void shoot(GameManager gm) {
+    void shoot(GameContainer gc,GameManager gm) {
         actualShoot--;
         if(actualShoot<0 && shootLeft>0) {
             if(miniCD==0) {

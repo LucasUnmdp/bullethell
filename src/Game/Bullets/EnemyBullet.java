@@ -9,8 +9,8 @@ import Game.Player;
 
 public class EnemyBullet extends Bullet{
 
-    private float value;
-    private int sign;
+    protected float value;
+    protected int sign;
     private Image image;
     private Light ligth;
 
@@ -31,7 +31,7 @@ public class EnemyBullet extends Bullet{
     }
 
     @Override
-    void move(float dt) {
+    void move(GameContainer gc,float dt) {
         posX+=dt*speed*value*sign;
         posY+=dt*speed*sign;
     }

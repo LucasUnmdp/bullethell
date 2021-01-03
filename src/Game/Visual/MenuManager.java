@@ -4,6 +4,9 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.ImageTile;
+import Game.GameManager;
+
+import java.awt.event.KeyEvent;
 
 public class MenuManager extends AbstractGame {
     private Button startButton;
@@ -16,6 +19,8 @@ public class MenuManager extends AbstractGame {
 
     @Override
     public void update(GameContainer gc, float dt) {
+        if(gc.getInput().isKeyDown(KeyEvent.VK_ENTER))
+            gc.setGame(new GameManager());
         startButton.update(gc,dt);
     }
 
