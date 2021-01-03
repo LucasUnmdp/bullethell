@@ -17,7 +17,7 @@ public class BrainSpawner extends Spawner{
     public void spawn() {
         if(time==0){
             time=cooldown;
-            enemies.add(new BrainEnemy((float)(Math.random()*gc.getWidht()),0));
+            enemies.add(new BrainEnemy((float)(Math.random()*gc.getWidht())));
         }
         time--;
     }

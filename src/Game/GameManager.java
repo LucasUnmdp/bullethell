@@ -67,7 +67,7 @@ public class GameManager extends AbstractGame {
             bgoff=0;
         }
         if(gc.getInput().isKeyDown(KeyEvent.VK_F1))
-            enemies.add(new BrainEnemy(250,0));
+            enemies.add(new BrainEnemy(250));
     }
 
     @Override

@@ -14,10 +14,10 @@ public class BrainEnemy extends Enemy{
     private double limy;
     int tileX=0;
 
-    public BrainEnemy(float posX, float posY){
+    public BrainEnemy(float posX){
         super();
         this.posX=posX;
-        this.posY=posY;
+        this.posY=0;
         this.width=49;
         this.height=30;
         this.speed=50;
