@@ -11,7 +11,7 @@ public class BirdSpawner extends Spawner{
     private int cant=3,cantAct=cant, miniCD =20,actualCD=0;
     public BirdSpawner(ArrayList<GameObject> enemies, GameContainer gc) {
         super(enemies, gc);
-        this.cooldown =240;
+        this.cooldown =300;
     }
 
     @Override

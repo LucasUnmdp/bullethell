@@ -10,7 +10,7 @@ public abstract class Spawner {
     protected ArrayList<GameObject> enemies;
     protected GameContainer gc;
     protected int cooldown;
-    protected int time=0;
+    protected int time=100;
 
     public Spawner(ArrayList<GameObject> enemies, GameContainer gc){
         this.enemies=enemies;

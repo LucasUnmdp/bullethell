@@ -26,6 +26,8 @@ public class BirdEnemy extends Enemy{
             tileX=1;
             this.speed = -75;
         }
+        this.light= new Light(5,0xe53ae5);
+        this.image= new ImageTile("/enemies/bird_enemy.png",this.width,this.height);
 
     }
     @Override

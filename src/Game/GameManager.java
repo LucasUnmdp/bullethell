@@ -6,6 +6,8 @@ import Engine.Renderer;
 import Engine.gfx.Image;
 import Game.Enemies.BrainEnemy;
 import Game.Spawners.BirdSpawner;
+import Game.Spawners.BrainSpawner;
+import Game.Spawners.Spawner;
 import Game.Spawners.SpiderSpawner;
 import Game.Visual.HUD;
 import Game.Visual.MenuManager;
@@ -19,13 +21,12 @@ public class GameManager extends AbstractGame {
     private Image background;
     private HUD hud;
     public final static int ambient=0xff232323;
-    private SpiderSpawner spawner;
-    private BirdSpawner spawnerxd;
     private float bgoff=0;
 
     private Player player;
     private ArrayList<GameObject> objects = new ArrayList<GameObject>();
     private ArrayList<GameObject> enemies = new ArrayList<>();
+    private ArrayList<Spawner> spawners = new ArrayList<>();
 
     public GameManager(){
     }
@@ -37,14 +38,13 @@ public class GameManager extends AbstractGame {
         player = new Player(gc.getWidht()/2,gc.getHeight()/2);
         background = new Image("/background.png");
         hud= new HUD(player);
-        this.spawner=new SpiderSpawner(enemies,gc);
-        spawnerxd= new BirdSpawner(enemies,gc);
+        spawners.add(new BirdSpawner(enemies,gc));
+        spawners.add(new BrainSpawner(enemies,gc));
+        spawners.add(new SpiderSpawner(enemies,gc));
     }
 
     @Override
     public void update(GameContainer gc, float dt) {
-        //spawner.spawn();
-        //spawnerxd.spawn();
         player.update(gc,this,dt);
         for(int i=0; i<objects.size();i++){
             objects.get(i).update(gc,this,dt);
@@ -58,6 +58,8 @@ public class GameManager extends AbstractGame {
                 enemies.remove(i--);
             }
         }
+        for (int i = 0; i < spawners.size(); i++)
+            spawners.get(i).spawn();
         if(player.isDead())
             gc.setGame(new MenuManager());
         bgoff+=dt*30;
