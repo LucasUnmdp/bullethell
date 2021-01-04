@@ -32,7 +32,7 @@ public class Player extends GameObject{
         this.posY=posY;
         this.width=16;
         this.height=31;
-        this.image = new ImageTile("/player/default.png",32,32);
+        this.image = new ImageTile("/player/default.png",16,31);
         this.light = new Light(200,0xffffff);
     }
 
@@ -40,19 +40,33 @@ public class Player extends GameObject{
     public void update(GameContainer gc,GameManager gm, float dt) {
         //Movement Start
         if(gc.getInput().isKey(KeyEvent.VK_W) && isIn(0,-dt*speed,gc)){
-            tileX=3;
+            if(gc.getInput().isKey(KeyEvent.VK_D))
+                tileX=5;
+            else
+                tileX=3;
             posY-=dt*speed;
         }
         if(gc.getInput().isKey(KeyEvent.VK_S)&& isIn(0,dt*speed,gc)){
-            tileX=0;
+            if(gc.getInput().isKey(KeyEvent.VK_A))
+                tileX=7;
+            else
+                tileX=0;
             posY+=dt*speed;
         }
         if(gc.getInput().isKey(KeyEvent.VK_A)&& isIn(-dt*speed,0,gc)){
-            tileX=2;
+            if(gc.getInput().isKey(KeyEvent.VK_W))
+                tileX=4;
+            else
+                if(!gc.getInput().isKey(KeyEvent.VK_S))
+                    tileX=2;
             posX-=dt*speed;
         }
         if(gc.getInput().isKey(KeyEvent.VK_D)&& isIn(dt*speed,0,gc)){
-            tileX=1;
+            if(gc.getInput().isKey(KeyEvent.VK_S))
+                tileX=6;
+            else
+                if(!gc.getInput().isKey(KeyEvent.VK_W))
+                    tileX=1;
             posX+=dt*speed;
         }
         //Movement Finish
@@ -67,10 +81,13 @@ public class Player extends GameObject{
                     gm.addObject(new PlayerBullet(8, posX + width, posY));
                 else
                     gm.addObject(new PlayerBullet(2, posX + 3, posY - height / 2));
-                fireCD = rateFire;
-                tileY = 1;
+                fireCD=rateFire;
+                tileY=1;
             }
-            tileX=3;
+            if(gc.getInput().isKey(KeyEvent.VK_RIGHT))
+                tileX=5;
+            else
+                tileX=3;
             }
             else
                 if (gc.getInput().isKey(KeyEvent.VK_RIGHT)){
@@ -82,7 +99,10 @@ public class Player extends GameObject{
                             fireCD = rateFire;
                             tileY = 1;
                         }
-                        tileX=1;
+                        if(gc.getInput().isKey(KeyEvent.VK_DOWN))
+                            tileX=6;
+                        else
+                            tileX=1;
                 }
                 else
                     if (gc.getInput().isKey(KeyEvent.VK_DOWN)) {
@@ -94,7 +114,10 @@ public class Player extends GameObject{
                                 fireCD = rateFire;
                                 tileY = 1;
                             }
-                            tileX = 0;
+                            if(gc.getInput().isKey(KeyEvent.VK_LEFT))
+                                tileX=7;
+                            else
+                                tileX=0;
                     }
                     else
                         if (gc.getInput().isKey(KeyEvent.VK_LEFT)) {
@@ -103,11 +126,13 @@ public class Player extends GameObject{
                                     gm.addObject(new PlayerBullet(7, posX, posY));
                                 else
                                     gm.addObject(new PlayerBullet(1, posX - width / 2, posY + height / 2));
-
                                 fireCD = rateFire;
                                 tileY = 1;
                             }
-                            tileX=2;
+                            if(gc.getInput().isKey(KeyEvent.VK_UP))
+                                tileX=4;
+                            else
+                                tileX=2;
                         }
         //Shoot finish
 
@@ -149,5 +174,4 @@ public class Player extends GameObject{
         if(hp==0)
             this.dead=true;
     }
-
 }
