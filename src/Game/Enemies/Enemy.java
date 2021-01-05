@@ -6,7 +6,6 @@ import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
 import Game.GameManager;
 import Game.GameObject;
-import Game.Player;
 
 public abstract class Enemy extends GameObject {
 
@@ -24,12 +23,7 @@ public abstract class Enemy extends GameObject {
     public void update(GameContainer gc, GameManager gm, float dt) {
         move(gc,dt);
         shoot(gc,gm);
-        //Enemy life start
-        if(!isIn(0,0,gc))
-            this.dead=true;
-        if(hp<=0)
-            this.dead=true;
-        //Enemy life finish
+        enemyLife(gc);
     }
 
     @Override
@@ -39,5 +33,11 @@ public abstract class Enemy extends GameObject {
 
     public void damage(int x){
         this.hp-=x;
+    }
+    protected void enemyLife(GameContainer gc){
+        if(!isIn(0,0,gc))
+            this.dead=true;
+        if(hp<=0)
+            this.dead=true;
     }
 }

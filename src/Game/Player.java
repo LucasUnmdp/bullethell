@@ -7,6 +7,7 @@ import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
 import Game.Bullets.Bullet;
 import Game.Bullets.PlayerBullet;
+import Game.Enemies.Enemy;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -144,7 +145,7 @@ public class Player extends GameObject{
                     this.damage();
                     this.inmunityCD=inmunityTime;
                     this.inmunity=true;
-                    e.setDead(true);
+                    ((Enemy) e).damage(1);
                     break;
                 }
             }
