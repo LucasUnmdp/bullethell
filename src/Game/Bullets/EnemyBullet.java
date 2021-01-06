@@ -4,6 +4,8 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
 import Engine.gfx.Light;
+import Game.Animations.BulletEnemySplashAnimation;
+import Game.Animations.BulletSplashAnimation;
 import Game.GameManager;
 import Game.Player;
 
@@ -42,6 +44,7 @@ public class EnemyBullet extends Bullet{
         if(this.checkCollision(p)){
             p.damage();
             this.dead=true;
+            gm.addObject(new BulletEnemySplashAnimation(posX,posY));
         }
     }
 

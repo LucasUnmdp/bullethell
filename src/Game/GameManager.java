@@ -7,7 +7,10 @@ import Engine.gfx.Image;
 import Game.Enemies.RingBossH;
 import Game.Enemies.RingBossManager;
 import Game.Enemies.RingBossV;
+import Game.Spawners.BirdSpawner;
+import Game.Spawners.BrainSpawner;
 import Game.Spawners.Spawner;
+import Game.Spawners.SpiderSpawner;
 import Game.Visual.HUD;
 import Game.Visual.MenuManager;
 
@@ -37,9 +40,9 @@ public class GameManager extends AbstractGame {
         player = new Player(gc.getWidht()/2,gc.getHeight()/2);
         background = new Image("/background.png");
         hud= new HUD(player);
-        //spawners.add(new BirdSpawner(enemies,gc));
-        //spawners.add(new BrainSpawner(enemies,gc));
-        //spawners.add(new SpiderSpawner(enemies,gc));
+        spawners.add(new BirdSpawner(enemies,gc));
+        spawners.add(new BrainSpawner(enemies,gc));
+        spawners.add(new SpiderSpawner(enemies,gc));
     }
 
     @Override
