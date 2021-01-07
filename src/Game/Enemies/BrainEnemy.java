@@ -56,6 +56,11 @@ public class BrainEnemy extends Enemy{
     }
 
     @Override
+    void deathAnimation(GameManager gm) {
+
+    }
+
+    @Override
     public void render(GameContainer gc, Renderer r) {
         r.drawImageTile(image,(int)posX,(int)posY,tileX,0);
         if(tileX==1 && cd==shootCD-10)

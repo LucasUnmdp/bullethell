@@ -26,6 +26,11 @@ public class RingBossV extends Enemy{
     }
 
     @Override
+    void deathAnimation(GameManager gm) {
+
+    }
+
+    @Override
     public void damage(int x) {
         rm.damage(x);
     }

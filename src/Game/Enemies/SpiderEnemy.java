@@ -5,6 +5,7 @@ import Engine.Renderer;
 import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
 import Engine.sfx.SoundClip;
+import Game.Animations.SpiderDeathAnimation;
 import Game.GameManager;
 
 public class SpiderEnemy extends Enemy{
@@ -60,6 +61,11 @@ public class SpiderEnemy extends Enemy{
     @Override
     void shoot(GameContainer gc,GameManager gm) {
 
+    }
+
+    @Override
+    void deathAnimation(GameManager gm) {
+        gm.addObject(new SpiderDeathAnimation(this.posX,this.posY));
     }
 
     @Override

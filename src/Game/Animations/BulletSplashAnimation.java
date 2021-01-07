@@ -15,17 +15,4 @@ public class BulletSplashAnimation extends Animation{
         this.posX=posX;
         this.posY=posY;
     }
-    @Override
-    public void update(GameContainer gc, GameManager gm, float dt) {
-        cd++;
-        if(cd%5==0)
-            tileX++;
-        if(cd==19)
-            this.dead=true;
-    }
-
-    @Override
-    public void render(GameContainer gc, Renderer r) {
-        r.drawImageTile(image,(int)posX,(int)posY,tileX,0);
-    }
 }

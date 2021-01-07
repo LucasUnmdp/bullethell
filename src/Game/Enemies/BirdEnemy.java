@@ -55,6 +55,11 @@ public class BirdEnemy extends Enemy{
     }
 
     @Override
+    void deathAnimation(GameManager gm) {
+
+    }
+
+    @Override
     public void render(GameContainer gc, Renderer r) {
         r.drawImageTile(image,(int)posX,(int)posY,tileX,tileY);
         if(tileY==1 && actualShoot==shootCD-5)

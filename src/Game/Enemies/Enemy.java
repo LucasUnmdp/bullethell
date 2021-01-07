@@ -19,11 +19,12 @@ public abstract class Enemy extends GameObject {
     }
     abstract void move(GameContainer gc,float dt);
     abstract void shoot(GameContainer gc,GameManager gm);
+    abstract void deathAnimation(GameManager gm);
     @Override
     public void update(GameContainer gc, GameManager gm, float dt) {
         move(gc,dt);
         shoot(gc,gm);
-        enemyLife(gc);
+        enemyLife(gc,gm);
     }
 
     @Override
@@ -34,10 +35,12 @@ public abstract class Enemy extends GameObject {
     public void damage(int x){
         this.hp-=x;
     }
-    protected void enemyLife(GameContainer gc){
+    protected void enemyLife(GameContainer gc,GameManager gm){
         if(!isIn(0,0,gc))
             this.dead=true;
-        if(hp<=0)
-            this.dead=true;
+        if(hp<=0) {
+            deathAnimation(gm);
+            this.dead = true;
+        }
     }
 }
