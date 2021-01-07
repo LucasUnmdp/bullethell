@@ -23,7 +23,7 @@ public class BrainSpawner extends Spawner{
     public void spawn() {
         if(time==0){
             time=cooldown;
-            enemies.add(new BrainEnemy((float)(Math.random()*gc.getWidht())));
+            enemies.add(new BrainEnemy((float)(Math.random()*(gc.getWidht()-49))));
             soundClip.play();
         }
         time--;
