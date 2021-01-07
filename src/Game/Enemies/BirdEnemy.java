@@ -2,9 +2,9 @@ package Game.Enemies;
 
 import Engine.GameContainer;
 import Engine.Renderer;
-import Engine.gfx.Image;
 import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
+import Game.Animations.BirdDeathAnimation;
 import Game.Bullets.EnemyBullet;
 import Game.GameManager;
 
@@ -56,7 +56,7 @@ public class BirdEnemy extends Enemy{
 
     @Override
     void deathAnimation(GameManager gm) {
-
+        gm.addObject(new BirdDeathAnimation(posX,posY));
     }
 
     @Override
