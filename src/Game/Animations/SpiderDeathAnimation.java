@@ -8,7 +8,7 @@ import Game.GameManager;
 public class SpiderDeathAnimation extends Animation{
 
     public SpiderDeathAnimation(float posX,float posY) {
-        this.image = new ImageTile("/animations/spider-death.png", 16, 16);
+        this.image = new ImageTile("/animations/spider-death.png", 20, 20);
         this.posX = posX;
         this.posY = posY;
     }
