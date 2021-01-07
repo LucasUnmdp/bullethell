@@ -4,6 +4,7 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
 import Engine.gfx.Light;
+import Engine.sfx.SoundClip;
 import Game.Animations.BulletEnemySplashAnimation;
 import Game.Animations.BulletSplashAnimation;
 import Game.GameManager;
@@ -15,6 +16,7 @@ public class EnemyBullet extends Bullet{
     protected int sign;
     private Image image;
     private Light ligth;
+    private SoundClip soundClip=new SoundClip("/audio/enemy-shoot.wav");
 
     public EnemyBullet(float posX, float posY,float posfX, float posfY) {
         super(posX, posY);
@@ -30,6 +32,8 @@ public class EnemyBullet extends Bullet{
         this.height=10;
         if(Math.abs(value)>1)
             this.speed=this.speed/Math.abs(value);
+        soundClip.setVolume(-40);
+        this.soundClip.play();
     }
 
     @Override

@@ -4,6 +4,7 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
+import Engine.sfx.SoundClip;
 import Game.GameManager;
 
 public class SpiderEnemy extends Enemy{
@@ -14,6 +15,7 @@ public class SpiderEnemy extends Enemy{
     private float offY,offX;
     private int tileX,tileY;
     private int sign;
+    private SoundClip soundClip= new SoundClip("/audio/spider-walking.wav");
 
     public SpiderEnemy(float posY,float posXmax){
         super();
@@ -32,6 +34,7 @@ public class SpiderEnemy extends Enemy{
         this.speed=100;
         this.image= new ImageTile("/enemies/spider_enemy.png",17,17);
         this.light= new Light(8,0x00ff00);
+        this.soundClip.setVolume(-40);
     }
     @Override
     void move(GameContainer gc,float dt) {
@@ -49,6 +52,7 @@ public class SpiderEnemy extends Enemy{
                 currentSteps=steps;
                 pause=steps;
                 tileY=1;
+                soundClip.play();
             }
         }
     }

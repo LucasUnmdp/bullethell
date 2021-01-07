@@ -4,6 +4,7 @@ import Engine.AbstractGame;
 import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
+import Engine.sfx.SoundClip;
 import Game.Enemies.RingBossH;
 import Game.Enemies.RingBossManager;
 import Game.Enemies.RingBossV;
@@ -30,6 +31,8 @@ public class GameManager extends AbstractGame {
     private ArrayList<GameObject> enemies = new ArrayList<>();
     private ArrayList<Spawner> spawners = new ArrayList<>();
 
+    private SoundClip soundClip= new SoundClip("/audio/battle-theme.wav");
+
     public GameManager(){
     }
 
@@ -43,6 +46,8 @@ public class GameManager extends AbstractGame {
         spawners.add(new BirdSpawner(enemies,gc));
         spawners.add(new BrainSpawner(enemies,gc));
         spawners.add(new SpiderSpawner(enemies,gc));
+        soundClip.setVolume(-45);
+        soundClip.loop();
     }
 
     @Override
@@ -62,8 +67,10 @@ public class GameManager extends AbstractGame {
         }
         for (int i = 0; i < spawners.size(); i++)
             spawners.get(i).spawn();
-        if(player.isDead())
+        if(player.isDead()) {
+            soundClip.stop();
             gc.setGame(new MenuManager());
+        }
         bgoff+=dt*30;
         if(bgoff>720){
             bgoff=0;

@@ -4,6 +4,7 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.Image;
 import Engine.gfx.Light;
+import Engine.sfx.SoundClip;
 import Game.Animations.BulletSplashAnimation;
 import Game.Enemies.Enemy;
 import Game.GameManager;
@@ -12,8 +13,10 @@ import Game.GameObject;
 import java.util.ArrayList;
 
 public class PlayerBullet extends Bullet{
+
     private Image image;
     private Light light;
+    private SoundClip soundClip=new SoundClip("/audio/player-shoot.wav");
 
     public PlayerBullet(int direction, float posX, float posY) {
         super(posX, posY);
@@ -23,6 +26,8 @@ public class PlayerBullet extends Bullet{
         tag="player-bullet";
         this.image= new Image("/bullets/default.png");
         this.light= new Light(15,0xeec938);
+        soundClip.setVolume(-40);
+        soundClip.play();
     }
 
     @Override
