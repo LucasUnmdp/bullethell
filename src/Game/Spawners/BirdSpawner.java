@@ -18,7 +18,7 @@ public class BirdSpawner extends Spawner{
     public void spawn() {
         if(time==0) {
             if(cantAct==cant) {
-                random = (float) (Math.random() * (gc.getWidht() - 100) + 50);
+                random = (float) (Math.random() * (gc.getWidht() - 125) + 50);
                 if (Math.random() >= 0.5)
                     y = gc.getHeight() - 16;
                 else

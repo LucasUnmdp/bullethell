@@ -4,6 +4,7 @@ import Engine.GameContainer;
 import Engine.Renderer;
 import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
+import Game.Animations.BrainDeathAnimation;
 import Game.Bullets.BrainEnemyBullet;
 import Game.GameManager;
 
@@ -57,7 +58,7 @@ public class BrainEnemy extends Enemy{
 
     @Override
     void deathAnimation(GameManager gm) {
-
+        gm.addObject(new BrainDeathAnimation(posX,posY));
     }
 
     @Override
