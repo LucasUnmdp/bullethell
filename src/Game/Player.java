@@ -5,6 +5,7 @@ import Engine.Renderer;
 import Engine.gfx.Image;
 import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
+import Engine.sfx.SoundClip;
 import Game.Bullets.Bullet;
 import Game.Bullets.PlayerBullet;
 import Game.Enemies.Enemy;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class Player extends GameObject{
     private final int rateFire = 20;
-    private final int inmunityTime= 20;
+    private final int inmunityTime= 60;
 
     private float speed = 150;
     private int fireCD=0;
@@ -22,9 +23,10 @@ public class Player extends GameObject{
     private int hp;
     private int tileX=0,tileY=0;
     private Light light;
+    private SoundClip soundClip= new SoundClip("/audio/hurt.wav");
 
     private boolean inmunity=false;
-    private ImageTile image;
+    private ImageTile image,inmunitySprite= new ImageTile("/player/inmunity.png",16,31);
 
     public Player(int posX,int posY){
         this.tag="player";
@@ -35,6 +37,7 @@ public class Player extends GameObject{
         this.height=31;
         this.image = new ImageTile("/player/default.png",16,31);
         this.light = new Light(200,0xffffff);
+        soundClip.setVolume(-30);
     }
 
     @Override
@@ -143,8 +146,7 @@ public class Player extends GameObject{
             for (GameObject e : enemies) {
                 if (this.checkCollision(e)) {
                     this.damage();
-                    this.inmunityCD=inmunityTime;
-                    this.inmunity=true;
+                    setInmunity();
                     ((Enemy) e).damage(1);
                     break;
                 }
@@ -159,7 +161,10 @@ public class Player extends GameObject{
 
     @Override
     public void render(GameContainer gc, Renderer r) {
-        r.drawImageTile(this.image,(int)this.posX,(int)this.posY,tileX,tileY);
+        if(inmunity)
+            r.drawImageTile(this.inmunitySprite,(int)this.posX,(int)this.posY,tileX,tileY);
+        else
+            r.drawImageTile(this.image,(int)this.posX,(int)this.posY,tileX,tileY);
         r.drawLight(light,(int)posX+width/2,(int)posY+height/2);
         if(tileY==1 && fireCD==rateFire-5){
             tileY--;
@@ -171,8 +176,18 @@ public class Player extends GameObject{
     }
 
     public void damage(){
+        soundClip.play();
         this.hp--;
         if(hp==0)
             this.dead=true;
+    }
+
+    public boolean isInmunity() {
+        return inmunity;
+    }
+
+    public void setInmunity(){
+        this.inmunityCD=inmunityTime;
+        this.inmunity=true;
     }
 }

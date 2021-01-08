@@ -46,9 +46,12 @@ public class EnemyBullet extends Bullet{
     void collision(GameManager gm) {
         Player p = (Player)gm.getPlayer();
         if(this.checkCollision(p)){
-            p.damage();
-            this.dead=true;
-            gm.addObject(new BulletEnemySplashAnimation(posX,posY));
+            if(!p.isInmunity()) {
+                p.setInmunity();
+                p.damage();
+                this.dead = true;
+                gm.addObject(new BulletEnemySplashAnimation(posX, posY));
+            }
         }
     }
 
