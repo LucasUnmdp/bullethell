@@ -6,7 +6,6 @@ import Engine.gfx.Image;
 import Engine.gfx.Light;
 import Engine.sfx.SoundClip;
 import Game.Animations.BulletEnemySplashAnimation;
-import Game.Animations.BulletSplashAnimation;
 import Game.GameManager;
 import Game.Player;
 

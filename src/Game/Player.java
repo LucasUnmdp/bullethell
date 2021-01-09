@@ -2,11 +2,9 @@ package Game;
 
 import Engine.GameContainer;
 import Engine.Renderer;
-import Engine.gfx.Image;
 import Engine.gfx.ImageTile;
 import Engine.gfx.Light;
 import Engine.sfx.SoundClip;
-import Game.Bullets.Bullet;
 import Game.Bullets.PlayerBullet;
 import Game.Enemies.Enemy;
 
@@ -152,8 +150,10 @@ public class Player extends GameObject{
                 }
             }
         }else{
-            if(--inmunityCD==0)
-                this.inmunity=false;
+            if(--inmunityCD==0) {
+                this.inmunity = false;
+                light = new Light(200,0xffffff);
+            }
         }
         //enemy collision end
 
@@ -162,7 +162,7 @@ public class Player extends GameObject{
     @Override
     public void render(GameContainer gc, Renderer r) {
         if(inmunity)
-            r.drawImageTile(this.inmunitySprite,(int)this.posX,(int)this.posY,tileX,tileY);
+            r.drawImageTile(this.inmunitySprite, (int) this.posX, (int) this.posY, tileX, tileY);
         else
             r.drawImageTile(this.image,(int)this.posX,(int)this.posY,tileX,tileY);
         r.drawLight(light,(int)posX+width/2,(int)posY+height/2);
@@ -187,6 +187,7 @@ public class Player extends GameObject{
     }
 
     public void setInmunity(){
+        light = new Light(100,0xff0000);
         this.inmunityCD=inmunityTime;
         this.inmunity=true;
     }
